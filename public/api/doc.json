@@ -1,0 +1,159 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Contacts API",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/contacts": {
+            "get": {
+                "summary": "Список контактов",
+                "operationId": "15ae76be3e1c738a9a5c16eeeb38cd26",
+                "responses": {
+                    "200": {
+                        "description": "Список контактов"
+                    }
+                }
+            },
+            "post": {
+                "summary": "Добавить контакт",
+                "operationId": "e120b260a504a7f3875b5951e7c1fa32",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "phone"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "phone": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "nullable": true
+                                    },
+                                    "note": {
+                                        "type": "string",
+                                        "nullable": true
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Контакт создан"
+                    },
+                    "400": {
+                        "description": "Не указаны имя или телефон"
+                    }
+                }
+            }
+        },
+        "/api/contacts/{id}": {
+            "get": {
+                "summary": "Контакт по ID",
+                "operationId": "fc734abd41756a7aaeecfecfa76f7642",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Контакт"
+                    },
+                    "404": {
+                        "description": "Контакт не найден"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Удалить контакт",
+                "operationId": "79f71525e8eedbfa01ddc3757da7861d",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Контакт удалён"
+                    },
+                    "404": {
+                        "description": "Контакт не найден"
+                    }
+                }
+            },
+            "patch": {
+                "summary": "Изменить контакт",
+                "operationId": "ab1940ba0e2b4be5871d292ea0c6ac15",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "phone": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "nullable": true
+                                    },
+                                    "note": {
+                                        "type": "string",
+                                        "nullable": true
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Контакт изменён"
+                    },
+                    "400": {
+                        "description": "Нет полей для изменения"
+                    },
+                    "404": {
+                        "description": "Контакт не найден"
+                    }
+                }
+            }
+        }
+    }
+}

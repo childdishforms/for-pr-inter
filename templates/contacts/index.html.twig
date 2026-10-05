@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Контакты{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="/contacts.css">
+{% endblock %}
+
+{% block body %}
+    <main class="app" data-contacts-url="{{ path('getContacts') }}">
+        <header class="page-header">
+            <div>
+                <p class="eyebrow">Телефонная книга</p>
+                <h1>Контакты</h1>
+                <p class="subtitle">Список людей и их контактные данные в одном месте.</p>
+            </div>
+            <button class="button button-primary" id="add-contact" type="button">+ Добавить контакт</button>
+        </header>
+
+        <div class="workspace">
+            <section class="panel list-panel" aria-label="Список контактов">
+                <div class="panel-heading">
+                    <h2>Все контакты</h2>
+                    <span class="count" id="contact-count"></span>
+                </div>
+                <label class="search-label" for="contact-search">Поиск</label>
+                <input id="contact-search" class="search-input" type="search" placeholder="Имя или телефон">
+                <ul class="contact-list" id="contact-list"></ul>
+                <p class="empty-message" id="list-empty" hidden>Контакты не найдены.</p>
+            </section>
+
+            <section class="panel detail-panel" aria-label="Данные контакта">
+                <div id="contact-details" hidden>
+                    <p class="eyebrow">Карточка контакта</p>
+                    <h2 id="detail-name"></h2>
+                    <dl class="details">
+                        <div><dt>Телефон</dt><dd id="detail-phone"></dd></div>
+                        <div><dt>Электронная почта</dt><dd id="detail-email"></dd></div>
+                        <div><dt>Заметка</dt><dd id="detail-note"></dd></div>
+                    </dl>
+                    <div class="actions">
+                        <button class="button button-secondary" id="edit-contact" type="button">Изменить</button>
+                        <button class="button button-danger" id="delete-contact" type="button">Удалить</button>
+                    </div>
+                </div>
+
+                <p class="empty-message" id="details-empty" hidden>Выберите контакт из списка или добавьте новый.</p>
+
+                <form id="contact-form" hidden>
+                    <p class="eyebrow" id="form-caption"></p>
+                    <h2 id="form-title"></h2>
+                    <label for="contact-name">Имя <span aria-hidden="true">*</span></label>
+                    <input id="contact-name" name="name" type="text" autocomplete="name" required>
+                    <label for="contact-phone">Телефон <span aria-hidden="true">*</span></label>
+                    <input id="contact-phone" name="phone" type="tel" autocomplete="tel" required>
+                    <label for="contact-email">Электронная почта</label>
+                    <input id="contact-email" name="email" type="email" autocomplete="email">
+                    <label for="contact-note">Заметка</label>
+                    <textarea id="contact-note" name="note" rows="3"></textarea>
+                    <div class="actions">
+                        <button class="button button-primary" type="submit">Сохранить</button>
+                        <button class="button button-secondary" id="cancel-form" type="button">Отмена</button>
+                    </div>
+                </form>
+            </section>
+        </div>
+
+        <p class="app-status" id="app-status" role="status" aria-live="polite" hidden></p>
+    </main>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="/contacts.js" defer></script>
+{% endblock %}
