@@ -1,0 +1,12 @@
+.git
+.agents
+.codex
+.aws
+.env
+.env.*
+vendor
+var
+node_modules
+*.db
+*.sqlite
+*.sqlite3

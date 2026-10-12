@@ -9,3 +9,17 @@
 
 controllers:
     resource: routing.controllers
+
+home:
+    path: /
+    controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController
+    defaults:
+        template: contacts/index.html.twig
+    methods: [GET]
+
+api_redoc:
+    path: /api/redoc
+    controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController
+    defaults:
+        template: api/redoc.html.twig
+    methods: [GET]
